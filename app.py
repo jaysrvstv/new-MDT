@@ -72,6 +72,7 @@ if st.button("🔎 Search"):
         memory_vecs = [openai.Embedding.create(input=[text], model="text-embedding-ada-002")["data"][0]["embedding"] for text in memory_texts]
         scores = cosine_similarity([query_vec], memory_vecs).flatten()
         top_index = int(np.argmax(scores))
+        best_match = memory_texts[top_index]
         st.info(f"🧠 Closest Match:
 
-{memory_texts[top_index]}")
+{best_match}")
